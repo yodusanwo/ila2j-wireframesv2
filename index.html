@@ -1,6 +1,8 @@
 <!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Home – ILA2J (EN)</title>
 <style>
 :root{--bg:#ffffff;--ink:#0f172a;--muted:#475569;--brand:#0b3d91;--cta:#0b3d91;}
@@ -33,9 +35,24 @@ footer{border-top:1px solid #e2e8f0;background:#f8fafc;padding:20px;margin-top:4
 .filters{display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:10px}
 .kicker{letter-spacing:.14em;text-transform:uppercase;color:#475569;font-weight:700;font-size:12px}
 a.inline{color:#0b3d91}
-</style>
-</head><body>
 
+/* Accordion (About box) */
+.accordion { margin-top: 12px; }
+.acc-btn {
+  width: 100%;
+  display: flex; justify-content: space-between; align-items: center;
+  background: #fff; border: 1px solid #cbd5e1; border-radius: 10px;
+  padding: 10px 14px; font-weight: 700; cursor: pointer; margin: 10px 0;
+}
+.acc-btn:focus { outline: 3px solid #0b3d91; outline-offset: 2px; }
+.acc-icon { font-size: 20px; line-height: 1; }
+.acc-panel {
+  border: 1px solid #e2e8f0; border-top: 0; border-radius: 0 0 10px 10px;
+  padding: 14px; margin-top: -10px; background: #fff;
+}
+</style>
+</head>
+<body>
 <header>
   <div class="logo">Illinois Access to Justice</div>
   <nav>
@@ -48,57 +65,132 @@ a.inline{color:#0b3d91}
     <a class="cta" href="get-help_en.html">Get Help</a>
   </div>
 </header>
+
 <main>
+  <section class="hero">
+    <h1>Community-based legal help across Illinois</h1>
+    <p>We’re a statewide coalition working to reduce the harms of detention, incarceration, and family separation in Black, Brown, and immigrant communities.</p>
+    <div class="buttons">
+      <a class="button" href="get-help_en.html#immigration">Immigration legal help</a>
+      <a class="button" href="get-help_en.html#expunge">Expunge or seal a record</a>
+      <a class="button" href="get-help_en.html#other">Other legal help</a>
+    </div>
+  </section>
 
-<section class="hero">
-  <h1>Community-based legal help across Illinois</h1>
-  <p>We’re a statewide coalition working to reduce the harms of detention, incarceration, and family separation in Black, Brown, and immigrant communities.</p>
-  <div class="buttons">
-    <a class="button" href="get-help_en.html#immigration">Immigration legal help</a>
-    <a class="button" href="get-help_en.html#expunge">Expunge or seal a record</a>
-    <a class="button" href="get-help_en.html#other">Other legal help</a>
-  </div>
-</section>
-<section>
-  <h2>About ILA2J</h2>
-  <p>Illinois Access to Justice (ILA2J) launched in 2020 to expand <strong>effective, holistic, community-based legal services</strong>. Co-administered by <strong>The Resurrection Project (TRP)</strong> and the <strong>Westside Justice Center</strong>, we support a growing network of 80+ partner organizations. Together we:</p>
-  <ul>
-    <li>Expand legal services where people live and work</li>
-    <li>Train and elevate <strong>Community Navigators</strong>—local leaders who connect neighbors to their rights and resources</li>
-    <li>Share best practices so partners can help more people</li>
-  </ul>
-  <p class="small">Funding is provided by the Illinois Department of Human Services (IDHS), Office of Welcoming Centers for Refugee and Immigrant Services.</p>
-</section>
-<section>
-  <h2>Types of Help</h2>
-  <div class="grid cols-3">
-    <div class="card"><h3>Immigration</h3><p>Know-your-rights information and legal representation for immigration needs.</p></div>
-    <div class="card"><h3>Expungement/Sealing</h3><p>Clear or seal eligible records to unlock jobs, housing, and stability.</p></div>
-    <div class="card"><h3>Family &amp; Other</h3><p>Family legal services and other common civil needs from trusted partners.</p></div>
-  </div>
-</section>
-<section>
-  <div class="kicker">Powered by Community Navigators</div>
-  <h2>Local leaders, real support</h2>
-  <p>Trusted local leaders who share know-your-rights information, assist with referrals, and support neighbors if ICE appears.</p>
-  <p><a class="inline" href="get-help_en.html#immigration">Find a Navigator near you</a></p>
-</section>
-<section>
-  <h2>Annual Reports</h2>
-  <p>See our impact and how the coalition is growing. <a class="inline" href="#">View reports</a>.</p>
-</section>
-<section>
-  <h2>Funding Opportunities</h2>
-  <p>Current opportunities for partners and providers. <a class="inline" href="#">Apply by [date]</a>.</p>
-</section>
-<section>
-  <h2>Our Partners</h2>
-  <p>80+ community-centered organizations statewide. <a class="inline" href="#">Meet our partners</a>.</p>
-</section>
+  <!-- UPDATED ABOUT BOX WITH EXPANDABLES -->
+  <section id="about-ila2j">
+    <h2>About ILA2J</h2>
+    <p>
+      Illinois Access to Justice (ILA2J) launched in 2020 to expand
+      <strong>effective, holistic, community-based legal services</strong>. Co-administered by
+      <strong>The Resurrection Project (TRP)</strong> and the <strong>Westside Justice Center (WJC)</strong>,
+      we support a growing network of 80+ partner organizations. Together we:
+    </p>
+    <ul>
+      <li>Expand legal services where people live and work</li>
+      <li>Train and elevate <strong>Community Navigators</strong>—local leaders who connect neighbors to their rights and resources</li>
+      <li>Share best practices so partners can help more people</li>
+    </ul>
+    <p class="small">
+      Funding is provided by the Illinois Department of Human Services (IDHS), Office of Welcoming Centers
+      for Refugee and Immigrant Services.
+    </p>
 
+    <div class="accordion">
+      <!-- ILA2J -->
+      <button class="acc-btn" aria-expanded="false" aria-controls="acc-ila2j">
+        <span>Illinois Access to Justice (ILA2J)</span>
+        <span class="acc-icon" aria-hidden="true">+</span>
+      </button>
+      <div id="acc-ila2j" class="acc-panel" hidden>
+        <p>
+          ILA2J is a statewide initiative working to reduce the harms of detention, incarceration, and family
+          separation in Black, Brown, and immigrant communities. We coordinate community-based legal services,
+          know-your-rights education, and Community Navigator leadership to protect due process and expand access
+          to justice across Illinois.
+        </p>
+      </div>
+
+      <!-- TRP -->
+      <button class="acc-btn" aria-expanded="false" aria-controls="acc-trp">
+        <span>The Resurrection Project (TRP)</span>
+        <span class="acc-icon" aria-hidden="true">+</span>
+      </button>
+      <div id="acc-trp" class="acc-panel" hidden>
+        <p>
+          Rooted in Chicago’s Pilsen community for more than 30 years, TRP’s Immigrant Justice team strengthens Illinois’
+          immigrant justice ecosystem through community legal services, know-your-rights education, and advocacy that advances
+          pro-immigrant policies. TRP combines direct representation with empowerment programs to keep families informed,
+          protected, and together.
+          <a class="inline" href="https://resurrectionproject.org/what-we-do/" target="_blank" rel="noopener">Learn more</a>.
+        </p>
+      </div>
+
+      <!-- WJC -->
+      <button class="acc-btn" aria-expanded="false" aria-controls="acc-wjc">
+        <span>Westside Justice Center (WJC)</span>
+        <span class="acc-icon" aria-hidden="true">+</span>
+      </button>
+      <div id="acc-wjc" class="acc-panel" hidden>
+        <p>
+          WJC is a nonprofit legal services and legal education organization dedicated to community justice.
+          Through a holistic, community-based approach—legal assistance, legal literacy, and restorative practices—WJC works
+          to reduce barriers to justice, mitigate the consequences of criminalization, and ensure underserved communities across
+          Chicagoland can access a fair legal system.
+          <a class="inline" href="https://www.westsidejustice.org/about" target="_blank" rel="noopener">Learn more</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Types of Help</h2>
+    <div class="grid cols-3">
+      <div class="card"><h3>Immigration</h3><p>Know-your-rights information and legal representation for immigration needs.</p></div>
+      <div class="card"><h3>Expungement/Sealing</h3><p>Clear or seal eligible records to unlock jobs, housing, and stability.</p></div>
+      <div class="card"><h3>Family &amp; Other</h3><p>Family legal services and other common civil needs from trusted partners.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">Powered by Community Navigators</div>
+    <h2>Local leaders, real support</h2>
+    <p>Trusted local leaders who share know-your-rights information, assist with referrals, and support neighbors if ICE appears.</p>
+    <p><a class="inline" href="get-help_en.html#immigration">Find a Navigator near you</a></p>
+  </section>
+
+  <section>
+    <h2>Annual Reports</h2>
+    <p>See our impact and how the coalition is growing. <a class="inline" href="#">View reports</a>.</p>
+  </section>
+
+  <section>
+    <h2>Funding Opportunities</h2>
+    <p>Current opportunities for partners and providers. <a class="inline" href="#">Apply by [date]</a>.</p>
+  </section>
+
+  <section>
+    <h2>Our Partners</h2>
+    <p>80+ community-centered organizations statewide. <a class="inline" href="#">Meet our partners</a>.</p>
+  </section>
 </main>
+
 <footer>
   <div class="small">ILA2J does not provide legal advice. This site helps you find community-based legal services.</div>
   <div class="small">© ILA2J</div>
 </footer>
-</body></html>
+
+<script>
+  document.querySelectorAll('.acc-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      const panel = document.getElementById(btn.getAttribute('aria-controls'));
+      if (panel) panel.hidden = expanded;
+      const icon = btn.querySelector('.acc-icon');
+      if (icon) icon.textContent = expanded ? '+' : '–';
+    });
+  });
+</script>
+</body>
+</html>
