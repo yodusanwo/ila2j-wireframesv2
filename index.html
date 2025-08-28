@@ -28,11 +28,6 @@ p{margin:8px 0;color:var(--muted)}
 .card{border:1px solid #cbd5e1;border-radius:12px;padding:14px;background:#fff}
 .small{font-size:14px;color:#64748b}
 footer{border-top:1px solid #e2e8f0;background:#f8fafc;padding:20px;margin-top:40px}
-.list{display:flex;flex-direction:column;gap:12px}
-.badges{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
-.badge{border:1px solid #cbd5e1;border-radius:999px;padding:4px 10px;font-size:12px;color:#334155}
-.result{border:1px solid #94a3b8;border-radius:12px;padding:14px}
-.filters{display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:10px}
 .kicker{letter-spacing:.14em;text-transform:uppercase;color:#475569;font-weight:700;font-size:12px}
 a.inline{color:#0b3d91}
 
@@ -50,6 +45,55 @@ a.inline{color:#0b3d91}
   border: 1px solid #e2e8f0; border-top: 0; border-radius: 0 0 10px 10px;
   padding: 14px; margin-top: -10px; background: #fff;
 }
+
+/* Carousel */
+.carousel {
+  position: relative;
+  margin-top: 10px;
+}
+.carousel-viewport {
+  overflow: hidden;
+}
+.carousel-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(260px, 1fr);
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 6px;
+  scrollbar-width: thin;
+}
+.carousel-track > .card,
+.carousel-track > .logo {
+  scroll-snap-align: start;
+}
+.carousel button.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  border-radius: 10px;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-weight: 700;
+  color: #0f172a;
+}
+.carousel button.nav:hover { background:#f1f5f9; }
+.carousel button.prev { left: -6px; }
+.carousel button.next { right: -6px; }
+
+/* Card specifics for carousels */
+.nofo-card h4, .report-card h4 { margin: 8px 0 6px; font-size: 16px; }
+.meta { font-size: 13px; color:#64748b; }
+.logo {
+  border:1px solid #cbd5e1; border-radius:12px; background:#fff;
+  display:flex; align-items:center; justify-content:center; height:96px; padding:10px;
+  font-weight:700; color:#334155;
+}
+.badge { border:1px solid #cbd5e1; border-radius:999px; padding:4px 10px; font-size:12px; color:#334155; display:inline-block; }
+.card .button { margin-top:8px; }
 </style>
 </head>
 <body>
@@ -159,38 +203,80 @@ a.inline{color:#0b3d91}
     <p><a class="inline" href="get-help_en.html#immigration">Find a Navigator near you</a></p>
   </section>
 
-  <section>
-    <h2>Annual Reports</h2>
-    <p>See our impact and how the coalition is growing. <a class="inline" href="#">View reports</a>.</p>
-  </section>
-
+  <!-- FUNDING OPPORTUNITIES — CAROUSEL -->
   <section>
     <h2>Funding Opportunities</h2>
-    <p>Current opportunities for partners and providers. <a class="inline" href="#">Apply by [date]</a>.</p>
+    <p class="small">Current opportunities for partners and providers.</p>
+
+    <div class="carousel" role="region" aria-label="Funding Opportunities carousel">
+      <button class="nav prev" aria-label="Previous">‹</button>
+      <div class="carousel-viewport">
+        <div class="carousel-track" data-step="1">
+          <!-- NOFO CARD -->
+          <div class="card nofo-card">
+            <span class="badge">NOFO</span>
+            <h4>IDHS Welcoming Centers – FY26 Capacity Grants</h4>
+            <p class="meta">Apply by: Nov 15, 2025</p>
+            <p>Support for immigrant-serving orgs expanding legal literacy and navigation.</p>
+            <a href="#" class="button">View details</a>
+          </div>
+          <div class="card nofo-card">
+            <span class="badge">NOFO</span>
+            <h4>Community Legal Services Expansion</h4>
+            <p class="meta">Apply by: Dec 2, 2025</p>
+            <p>Funding for direct representation in immigration & record relief.</p>
+            <a href="#" class="button">View details</a>
+          </div>
+          <div class="card nofo-card">
+            <span class="badge">NOFO</span>
+            <h4>Navigator Training & Outreach</h4>
+            <p class="meta">Apply by: Jan 10, 2026</p>
+            <p>Train Community Navigators to lead know-your-rights education statewide.</p>
+            <a href="#" class="button">View details</a>
+          </div>
+        </div>
+      </div>
+      <button class="nav next" aria-label="Next">›</button>
+    </div>
   </section>
 
+  <!-- ANNUAL REPORTS — CAROUSEL -->
+  <section>
+    <h2>Annual Reports</h2>
+    <p class="small">See our impact and how the coalition is growing.</p>
+
+    <div class="carousel" role="region" aria-label="Annual Reports carousel">
+      <button class="nav prev" aria-label="Previous">‹</button>
+      <div class="carousel-viewport">
+        <div class="carousel-track" data-step="1">
+          <!-- REPORT CARD -->
+          <div class="card report-card">
+            <div class="logo" aria-hidden="true">2024 Report</div>
+            <h4>Annual Report 2024</h4>
+            <p class="meta">PDF • 28 pages</p>
+            <a href="#" class="button">Open report</a>
+          </div>
+          <div class="card report-card">
+            <div class="logo" aria-hidden="true">2023 Report</div>
+            <h4>Annual Report 2023</h4>
+            <p class="meta">PDF • 26 pages</p>
+            <a href="#" class="button">Open report</a>
+          </div>
+          <div class="card report-card">
+            <div class="logo" aria-hidden="true">2022 Report</div>
+            <h4>Annual Report 2022</h4>
+            <p class="meta">PDF • 24 pages</p>
+            <a href="#" class="button">Open report</a>
+          </div>
+        </div>
+      </div>
+      <button class="nav next" aria-label="Next">›</button>
+    </div>
+  </section>
+
+  <!-- OUR PARTNERS — LOGO CAROUSEL -->
   <section>
     <h2>Our Partners</h2>
-    <p>80+ community-centered organizations statewide. <a class="inline" href="#">Meet our partners</a>.</p>
-  </section>
-</main>
+    <p class="small">80+ community-centered organizations statewide.</p>
 
-<footer>
-  <div class="small">ILA2J does not provide legal advice. This site helps you find community-based legal services.</div>
-  <div class="small">© ILA2J</div>
-</footer>
-
-<script>
-  document.querySelectorAll('.acc-btn').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!expanded));
-      const panel = document.getElementById(btn.getAttribute('aria-controls'));
-      if (panel) panel.hidden = expanded;
-      const icon = btn.querySelector('.acc-icon');
-      if (icon) icon.textContent = expanded ? '+' : '–';
-    });
-  });
-</script>
-</body>
-</html>
+    <div class="carousel"
