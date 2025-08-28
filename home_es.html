@@ -209,4 +209,135 @@ a.inline{color:#0b3d91}
           <div class="card nofo-card">
             <span class="badge">NOFO</span>
             <h4>Centros de Bienvenida IDHS – Subvenciones de capacidad AF26</h4>
-            <p
+            <p class="meta">Postular antes de: 15 nov 2025</p>
+            <p>Apoyo a organizaciones que amplían alfabetización legal y navegación para inmigrantes.</p>
+            <a href="#" class="button">Ver detalles</a>
+          </div>
+          <div class="card nofo-card">
+            <span class="badge">NOFO</span>
+            <h4>Expansión de Servicios Legales Comunitarios</h4>
+            <p class="meta">Postular antes de: 2 dic 2025</p>
+            <p>Financia representación directa en inmigración y alivio de antecedentes.</p>
+            <a href="#" class="button">Ver detalles</a>
+          </div>
+          <div class="card nofo-card">
+            <span class="badge">NOFO</span>
+            <h4>Capacitación y Alcance de Navegadores</h4>
+            <p class="meta">Postular antes de: 10 ene 2026</p>
+            <p>Forme Navegadores Comunitarios para liderar “conozca sus derechos” en todo el estado.</p>
+            <a href="#" class="button">Ver detalles</a>
+          </div>
+        </div>
+      </div>
+      <button class="nav next" aria-label="Siguiente">›</button>
+    </div>
+  </section>
+
+  <!-- INFORMES ANUALES — CARRUSEL -->
+  <section>
+    <h2>Informes anuales</h2>
+    <p class="small">Conozca nuestro impacto y cómo crece la coalición.</p>
+
+    <div class="carousel" role="region" aria-label="Carrusel de Informes anuales">
+      <button class="nav prev" aria-label="Anterior">‹</button>
+      <div class="carousel-viewport">
+        <div class="carousel-track" data-step="1">
+          <div class="card report-card">
+            <div class="logo" aria-hidden="true">Informe 2024</div>
+            <h4>Informe anual 2024</h4>
+            <p class="meta">PDF • 28 páginas</p>
+            <a href="#" class="button">Abrir informe</a>
+          </div>
+          <div class="card report-card">
+            <div class="logo" aria-hidden="true">Informe 2023</div>
+            <h4>Informe anual 2023</h4>
+            <p class="meta">PDF • 26 páginas</p>
+            <a href="#" class="button">Abrir informe</a>
+          </div>
+          <div class="card report-card">
+            <div class="logo" aria-hidden="true">Informe 2022</div>
+            <h4>Informe anual 2022</h4>
+            <p class="meta">PDF • 24 páginas</p>
+            <a href="#" class="button">Abrir informe</a>
+          </div>
+        </div>
+      </div>
+      <button class="nav next" aria-label="Siguiente">›</button>
+    </div>
+  </section>
+
+  <!-- NUESTROS SOCIOS — CARRUSEL DE LOGOS -->
+  <section>
+    <h2>Nuestros socios</h2>
+    <p class="small">Más de 80 organizaciones centradas en la comunidad en todo el estado.</p>
+
+    <div class="carousel" role="region" aria-label="Carrusel de Nuestros socios">
+      <button class="nav prev" aria-label="Anterior">‹</button>
+      <div class="carousel-viewport">
+        <div class="carousel-track" data-step="2">
+          <div class="logo" title="The Resurrection Project">TRP</div>
+          <div class="logo" title="Westside Justice Center">WJC</div>
+          <div class="logo" title="Indo American Center">Indo American Center</div>
+          <div class="logo" title="Centro de Información">Centro de Información</div>
+          <div class="logo" title="Erie Neighborhood House">Erie House</div>
+          <div class="logo" title="HANA Center">HANA Center</div>
+          <div class="logo" title="ICIRR">ICIRR</div>
+          <div class="logo" title="Mujeres Latinas en Acción">Mujeres</div>
+          <div class="logo" title="Chicago Appleseed Center">Appleseed</div>
+          <div class="logo" title="NWI Indiana Partners">NWI Partners</div>
+        </div>
+      </div>
+      <button class="nav next" aria-label="Siguiente">›</button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="small">ILA2J no ofrece asesoría legal. Este sitio le ayuda a encontrar servicios legales comunitarios.</div>
+  <div class="small">© ILA2J</div>
+</footer>
+
+<script>
+/* Acordeón */
+document.querySelectorAll('.acc-btn').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!expanded));
+    const panel = document.getElementById(btn.getAttribute('aria-controls'));
+    if (panel) panel.hidden = expanded;
+    const icon = btn.querySelector('.acc-icon');
+    if (icon) icon.textContent = expanded ? '+' : '–';
+  });
+});
+
+/* Carruseles */
+function initCarousel(root){
+  const track = root.querySelector('.carousel-track');
+  const prev = root.querySelector('.prev');
+  const next = root.querySelector('.next');
+  const stepItems = Number(track?.dataset?.step || 1);
+
+  function stepWidth(){
+    const viewport = root.querySelector('.carousel-viewport');
+    const item = track.children[0];
+    if(!viewport || !item) return 300;
+    const itemWidth = item.getBoundingClientRect().width + 14; // incluye el gap
+    return itemWidth * stepItems;
+  }
+  function scrollByDir(dir){
+    track.scrollBy({left: dir * stepWidth(), behavior: 'smooth'});
+  }
+  prev?.addEventListener('click', () => scrollByDir(-1));
+  next?.addEventListener('click', () => scrollByDir(1));
+
+  // Teclado
+  root.addEventListener('keydown', (e)=>{
+    if(e.key === 'ArrowLeft'){ e.preventDefault(); scrollByDir(-1); }
+    if(e.key === 'ArrowRight'){ e.preventDefault(); scrollByDir(1); }
+  });
+  root.setAttribute('tabindex','0'); // zona focalizable
+}
+document.querySelectorAll('.carousel').forEach(initCarousel);
+</script>
+</body>
+</html>
